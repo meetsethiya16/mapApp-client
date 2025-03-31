@@ -1,4 +1,4 @@
-import MapComponent from "../Components/MapComponent";
+import MapComponent from "../components/MapComponent";
 import { useEffect } from "react";
 
 const MapPage = () => {
