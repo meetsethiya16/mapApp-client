@@ -1,0 +1,16 @@
+.dashboard-container {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slide-In 0.5s ease-out forwards;
+}
+
+@keyframes slide-In {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
