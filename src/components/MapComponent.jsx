@@ -13,12 +13,12 @@ const MapComponent = () => {
   const [zoom, setZoom] = useState(5);
 
   useEffect(() => {
-    console.log(navigator);
-    console.log(navigator.geolocation);
+    // console.log(navigator);
+    // console.log(navigator.geolocation);
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log(position);
+          // console.log(position);
           const { latitude, longitude } = position.coords;
           setUserLocation([latitude, longitude]);
           setZoom(7);
