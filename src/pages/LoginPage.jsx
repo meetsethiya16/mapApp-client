@@ -31,12 +31,11 @@ const LoginPage = () => {
 
     if (validateForm()) {
       axios
-        .post(apiUrlUser + "/login", userDetail)
+        .post(apiUrlUser + "/login", userDetail, { withCredentials: true })
         .then((res) => {
-          const userDetail = res.data.users;
-          // console.log(userDetail);
           localStorage.setItem("token", res.data.token);
-          userDetail.password === password && userDetail.username === username
+          res.data.users.password === password &&
+          res.data.users.username === username
             ? navigate("/dashboard")
             : navigate("/");
         })
