@@ -34,7 +34,7 @@ const LoginPage = () => {
         .post(apiUrlUser + "/login", userDetail)
         .then((res) => {
           const userDetail = res.data.users;
-          console.log(userDetail);
+          // console.log(userDetail);
           localStorage.setItem("token", res.data.token);
           userDetail.password === password && userDetail.username === username
             ? navigate("/dashboard")
