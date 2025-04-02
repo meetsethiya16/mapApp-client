@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { useParams } from "react-router-dom";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
@@ -14,45 +14,20 @@ const customIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-const ChangeView = ({ center, zoom }) => {
-  const map = useMap();
-  map.flyTo(center, zoom);
-  return null;
-};
-
 const MapComponent = () => {
-  const [userLocation, setUserLocation] = useState([20.5937, 78.9629]);
-  const [zoom, setZoom] = useState(5);
-
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setUserLocation([latitude, longitude]);
-          setZoom(7);
-        },
-        (error) => {
-          console.error("Error getting location:", error);
-        }
-      );
-    }
-  }, []);
+  const { cityName, lat, lng } = useParams();
+  const latitude = parseFloat(lat);
+  const longitude = parseFloat(lng);
 
   return (
     <MapContainer
-      center={userLocation}
-      zoom={zoom}
-      scrollWheelZoom={true}
+      center={[latitude, longitude]}
+      zoom={10}
       style={{ height: "500px", width: "500px" }}
     >
-      <ChangeView center={userLocation} zoom={zoom} />
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
-      <Marker position={userLocation} icon={customIcon}>
-        <Popup>Your Current Location</Popup>
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <Marker position={[latitude, longitude]} icon={customIcon}>
+        <Popup>{cityName}</Popup>
       </Marker>
     </MapContainer>
   );
