@@ -31,7 +31,11 @@ const LoginPage = () => {
 
     if (validateForm()) {
       axios
-        .post(apiUrlUser + "/login", userDetail, { withCredentials: true })
+        .post(
+          "https://mapapp-server-production-0e9d.up.railway.app/login",
+          userDetail,
+          { withCredentials: true }
+        )
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           res.data.users.password === password &&
