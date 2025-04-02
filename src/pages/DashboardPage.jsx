@@ -1,27 +1,37 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import MapCard from "../components/MapCard";
+import axios from "axios";
 import "./DashboardPage.css";
-import { useEffect } from "react";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
+  const [cities, setCities] = useState([]);
 
   useEffect(() => {
     document.title = "Dashboard | MapApp";
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/dashboard/cities")
+      .then((response) => setCities(response.data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
   return (
     <div className="dashboard-container">
-      <h2>Dashboard</h2>
-      <div
-        onClick={() => navigate("/map")}
-        style={{
-          border: "1px solid black",
-          padding: "10px",
-          cursor: "pointer",
-        }}
-      >
-        <h3 style={{ textAlign: "center" }}>View Map</h3>
-      </div>
+      {cities.map((city) => (
+        <MapCard
+          key={city._id}
+          name={city.cityName}
+          latitude={city.latitude}
+          longitude={city.longitude}
+          onClick={() =>
+            navigate(`/map/${city.cityName}/${city.latitude}/${city.longitude}`)
+          }
+        />
+      ))}
     </div>
   );
 };
