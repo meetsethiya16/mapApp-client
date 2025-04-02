@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import MapCard from "../components/MapCard";
 import axios from "axios";
 import "./DashboardPage.css";
+import { apiUrlDashboard } from "../ApiUrl.js";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/dashboard/cities")
+      .get(apiUrlDashboard + "/cities")
       .then((response) => setCities(response.data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
