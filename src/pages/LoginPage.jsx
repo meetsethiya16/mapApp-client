@@ -31,12 +31,7 @@ const LoginPage = () => {
 
     if (validateForm()) {
       axios
-        .post(apiUrlUser + "/login", userDetail, {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+        .post(apiUrlUser + "/login", userDetail)
         .then((res) => {
           const userDetail = res.data.users;
           console.log(userDetail);
