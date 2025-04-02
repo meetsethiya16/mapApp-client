@@ -1,9 +1,9 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
-import MapPage from "./pages/MapPage";
 import Header from "./components/Header";
 import "./App.css";
+import MapComponent from "./components/MapComponent";
 
 function App() {
   const location = useLocation();
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/map" element={<MapPage />} />
+          <Route path="/map/:cityName/:lat/:lng" element={<MapComponent />} />
         </Routes>
       </div>
     </>
