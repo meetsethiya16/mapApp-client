@@ -31,9 +31,7 @@ const LoginPage = () => {
 
     if (validateForm()) {
       axios
-        .post(apiUrlUser + "/login", userDetail, {
-          withCredentials: true,
-        })
+        .post(apiUrlUser + "/login", userDetail)
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           res.data.users.password === password &&
