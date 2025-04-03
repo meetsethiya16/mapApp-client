@@ -14,7 +14,7 @@ This is a full-stack MERN (MongoDB, Express, React, Node.js) project that integr
 
 - To log in and access the dashboard, use the following credentials:
     - **Username:** user
-    - **Password:** userPass
+    - **Password:** pass
 
 ## 🛠️ Technologies Used
 - **Frontend:** React.js, Vite, React Leaflet
