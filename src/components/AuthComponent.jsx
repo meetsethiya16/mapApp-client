@@ -7,11 +7,11 @@ const Auth = () => {
     var path = window.location.pathname;
     if (path == "/dashboard") {
       if (!localStorage.getItem("token")) {
-        navigate("/login");
+        navigate("/");
       }
     } else if (path == "/map") {
       if (!localStorage.getItem("token")) {
-        navigate("/login");
+        navigate("/");
       }
     } else {
       if (localStorage.getItem("token")) {
